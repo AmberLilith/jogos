@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <!-- Latest compiled and minified CSS --> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> 
+ <!-- Optional theme --> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> 
+ <!-- Latest compiled and minified JavaScript --> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>   
+</head>
+<script>
+    function criaElementos(){
+        var tabela = document.createElement("table");
+        var contadorDeBotoes = 1;
+        for (let lin = 1; lin <= 20; lin++) {
+            var tableRow = document.createElement("tr");
+            for (let col = 1; col <= 20; col++) {
+                var tableColumn = document.createElement("td");
+                var botao = document.createElement("button");
+                botao.setAttribute("id","botao"+contadorDeBotoes);
+                botao.setAttribute("linha","linha_" + lin);
+                botao.setAttribute("coluna","coluna_" + col);
+                botao.setAttribute("style","width:30px;height:30px");
+                botao.setAttribute("onclick","alert('nome: ' + this.id + ', ' + this.getAttribute('coluna') + this.getAttribute('linha'))");
+                tableColumn.appendChild(botao);
+                tableRow.appendChild(tableColumn);  
+                contadorDeBotoes++;               
+            }
+            tabela.appendChild(tableRow);
+                       
+        }
+        document.getElementById("painelJogo").appendChild(tabela);
+        }
+</script>
+<body onload="criaElementos()">
+    <div class="container">
+        <header style="margin-top: 20px;"></header>
+        <div class="row"> 
+            <div class="col-sm-2">              
+            </div>
+            <div class="col-sm-8"> 
+                <div id="painelJogo">              
+                </div>             
+            </div>
+            <div class="col-sm-2">              
+            </div>
+                
+            </div>
+            "
+        </div>
+    
+    </div>
+</body>
+</html>
