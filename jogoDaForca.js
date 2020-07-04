@@ -1,0 +1,6 @@
+var palavrasDicas = [{palavra:"amor",dica:"sentimento"},{palavra:"panela",dica:"itensílio"},{palavra:"borboleta",dica:"inseto"},{palavra:"portaria",dica:"tipo de recepção"},{palavra:"RODOVIÁRIA",dica:"ÔNIBUS"},{palavra:"CAFÉ DA MANHÃ",dica:"REFEIÇÃO"},{palavra:"CABELEIREIRO",dica:"PROFISSÃO"},{palavra:"PÉRSIA",dica:"PÁIS"},{palavra:"CADERNO",dica:"ESCOLA"},{palavra:"FACULDADE",dica:"ESTUDOS"},{palavra:"DICIONÁRIO",dica:"PALAVRAS"},{palavra:"CAMINHONETE",dica:"VEÍCULO"},{palavra:"SOLSTÍCIO",dica:"ASTRONOMIA"},{palavra:"PÉ-DE-MOLEQUE",dica:"DOCE"},{palavra:"BACALHAU",dica:"PEIXE"},{palavra:"MOTORISTA",dica:"CAMINHÃO"},{palavra:"FUTEBOL",dica:"BOLA"},{palavra:"TALHERES",dica:"COZINHA"},{palavra:"PROFESSOR",dica:"ESCOLA"},{palavra:"ARTISTA",dica:"TELEVISÃO"},{palavra:"CACHORRO",dica:"ANIMAL"},{palavra:"PERNAMBUCO",dica:"BRASIL"},{palavra:"DOCUMENTÁRIO",dica:"FILME"},{palavra:"ALMANQUE",dica:"REVISTA"},{palavra:"LINGUAGEM",dica:"FALAR"}];
+function exibe(){
+    //for(let i = 0;i<palavrasDicas.length;i++){
+        alert(palavrasDicas.length)
+    //}
+}
