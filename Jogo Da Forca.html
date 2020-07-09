@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="jogoDaForca.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="jogoDaForca.js"></script>
+<script type="text/javascript" src="funcoesGerais.js"></script>
+
+ </head>
+
+ <body onLoad="novaRodada()"> 
+<div class="container-fluid">
+	<header class="text-center" style="margin-bottom: 50px;">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-9">
+				<h3>JOGO DA FORCA</h3>
+			</div>
+		</div>
+	</header>
+	<div class="row">
+		<div class="col-sm-2">
+			<div class="text-center"><button onclick="alert(novoJogo.letrasEspeciais[2])">REINICIAR</button></div>
+			<hr>
+			<div class="text-center">
+				<h4>COMO JOGAR:</h4>
+				<div><ul>
+					<li>Através da dica, tente descobrir a palavra escolhendo uma letra no teclado disponível.</li>
+					<li>Cada letra que você escolher, vai aparecer em "Letras já escolhidas" e não será possível
+					utilizá-la mais durante a mesma rodada.</li>
+					<li>ao completar 7 letras que não tenha na palavra, a rodada será encerrada e dada opção 
+						de iniciar nova rodada.
+					</li>
+				</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-10" style="border-left: 2px solid;">
+			<div class="row">
+				<div class="col-sm-5">
+					<div ><img id="forca" src="imagens/forca_0.jpg"></div>
+				</div>
+				<div class="col-sm-7 text-center" style="height: 100%; border-left: 1px solid">
+					<div id="painelJogo" style="height: 600px;">
+						<h3>
+							<label>Palavra Formada:</label>		
+							<label id="plvrFormada">palavra formada</label>  
+						</h3>
+							<div class="row" style="padding-bottom: 0px;margin-bottom: 0px;">
+								<div class="col-sm-3">
+									<h4>
+										<label id="labelDica" style="padding-right: 10px;padding-bottom: 0px;margin-bottom: 0px;" >Desat. dica</label><input id="activeDeative" type="checkbox" onchange="novoJogo.ativaDesativaDica(this)">
+									</h4>
+								</div>
+								<div class="col-sm-1"></div>
+								<div class="col-sm-8" style="padding-bottom: 0px;margin-bottom: 0px;">
+									<h4>
+										<span id="painelDica">
+											<label style="padding-left: 100px;">Dica:</label>		
+											<label id="dica">dica</label> 
+										</span> 
+									</h4> 
+								</div>
+							</div>
+							<hr style="padding-top: 0px;margin-top: 0px;color:black">
+																		
+							<div id="teclado" style="padding: 10px; border: 1px solid lightgray; margin-top: 75px;margin-bottom: 75px;"></div>
+							<h4  style="margin-top: 100px;">
+								<label>Letras já escolhidas:</label>		
+								<label id="letrasJaEscolhidas">letras</label>  
+							</h4> 
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+<footer style="border-top:2px solid;margin-top: 10px;"></footer>
+</body>
+
+ </html>

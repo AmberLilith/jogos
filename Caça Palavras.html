@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -6,21 +6,24 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="jogoDaForca.js"></script>
+<script type="text/javascript" src="jogoPalavras.js"></script>
+<script type="text/javascript" src="funcoesGerais.js"></script>
 
  </head>
 
- <body onLoad="exibe()"> 
+ <body onLoad="novoJogo = new jogoCacaPalavras(10,10,2);novoJogo.novaRodada(true)"> 
 <div class="container">
-	<header class="text-center"><h3>JOGO DA FORCA</h3></header>
+	<header class="text-center"><h3>CAÇA PALAVRAS</h3></header>
 	<div class="row">
 		<div class="col-sm-2">
+			<div id="painelPalavras" class="pt-100 text-center"></div>
+			<hr>
 			<div class="text-center"><button onclick="novoJogo.novaRodada(true)">REINICIAR</button></div>
 			<hr>
 			<div class="text-center">
 				<h4>COMO JOGAR:</h4>
-				<div>Ao encontrar uma palavra, clique na primeira letra e v� levando o mouse at� a �ltima
-					letra da palavra. Quando chegar na �ltima letra, clique novamente para finalizar.
+				<div>Ao encontrar uma palavra, clique na primeira letra e vá levando o mouse até a última
+					letra da palavra. Quando chegar na última letra, clique novamente para finalizar.
 				</div>
 			</div>
 		</div>
@@ -28,8 +31,6 @@
 			<label>Palavra Formada:</label>		
 			<label id="plvrFormada"></label>
 			<div id="painelJogo">
-                <div id="forca"></div>
-                <div id="teclado"></div>
 			</div>
 		</div>
 
