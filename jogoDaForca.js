@@ -80,8 +80,9 @@ class jogoDaForca{
         }
         this.letrasJaEscolhidas.push(letra);
         document.getElementById("letrasJaEscolhidas").textContent = this.letrasJaEscolhidas;
-        this.verificaErros();
         this.verificaPalavra();
+        this.verificaErros();
+        
     }
 
     verificaErros(){
@@ -92,14 +93,13 @@ class jogoDaForca{
             }else{
                 document.getElementById("teclado").style.display = 'none';
             }
-
+            erros = 0;
         }
     }
 
     verificaPalavra(){
-        //alert(this.palavraFormada + "==" + this.palavraEscolhida)
         if(this.palavraFormada.toString() == this.palavraEscolhida.toString()){
-            var resposta = confirm("Chances esgotadas. A palavra correta era: ".concat(replace(this.palavraEscolhida,",","")).concat("\n").concat("Deseja iniciar novo jogo?"));
+            var resposta = confirm("Parabéns! Você descobriu a palavra : ".concat(replace(this.palavraEscolhida,",","")).concat("\n").concat("Deseja iniciar novo jogo?"));
             if (resposta == true){
                 novaRodada();
             }else{

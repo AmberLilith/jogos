@@ -13,9 +13,9 @@
 	//ao formar uma palavra. Os valores desse array são usados para exibir a palavra formada na página.
 	//O array direcoes são as direções possível em que uma palavra pode ser inserida no painel do jogo.
 	constructor(qtddColunasDeLetras,qtddLinhasDeLetras,qtddPalavrasParaEncontrar){
-	this.qtddColunasDeLetras = qtddColunasDeLetras;
-	this.qtddLinhasDeLetras = qtddLinhasDeLetras;
-	this.qtddPalavrasParaEncontrar = qtddPalavrasParaEncontrar;
+	this.qtddColunasDeLetras;
+	this.qtddLinhasDeLetras;
+	this.qtddPalavrasParaEncontrar;
 	this.pontuacao = 0;	
 	this.letras = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 	this.iniciaPalavra = false;
@@ -27,16 +27,29 @@
 	this.palavraFormada = "";
 	}
 
+	obtemDificuldade(){
+		var opcoes = document.querySelectorAll("[name='dificuldade'")
+		for(let i = 0;i<opcoes.length;i++){
+			if(opcoes[i].checked == true){
+				return [parseInt(opcoes[i].getAttribute("colunasLinhas")),parseInt(opcoes[i].getAttribute("qtdd_palavras"))];
+			}
+		}
+	}
+
 	//O método novaRodada(inicio) inicia uma nova rodada. Seu argumento sinalizada se é uma nova rodada
 	//iniciada ao abrir a página (inicio = true) ou iniciada pelo usuário atraves do botão "reiniciar" ou
 	//iniciada ao finalizar uma rodada (inicio = false)
 	 novaRodada(inicio){
 		 const geraRodada = () =>{
+			document.querySelector("#plvrFormada").textContent = "";
+			this.qtddColunasDeLetras = this.obtemDificuldade()[0];
+			this.qtddLinhasDeLetras = this.obtemDificuldade()[0];
+			this.qtddPalavrasParaEncontrar = this.obtemDificuldade()[1];
 			document.getElementById("painelPalavras").textContent = "";
 			document.getElementById("painelJogo").textContent = "";
 			this.criaElementos();
 			this.distribuiLetras();
-			this.escolhePalavras(this.qtddPalavrasParaEncontrar);
+			this.escolhePalavras();
 			this.distribuiPalavras();
 			this.pontuacao = 0;
 		 }
@@ -69,7 +82,8 @@
                 botao.setAttribute("linha",lin);
 				botao.setAttribute("coluna",col);
 				botao.setAttribute("utilizada","NÃO");
-                botao.setAttribute("style","width:30px;height:30px");
+				botao.setAttribute("selecionada","NÃO");
+                botao.setAttribute("class","letraPadrao");
 				botao.setAttribute("onclick","novoJogo.iniciaFinalizaPalavra(this)");
 				botao.setAttribute("onmouseenter","novoJogo.formaPalavra(this)");
 				colunaDeLetras.appendChild(botao);
@@ -102,8 +116,11 @@
 	//que a formação de palavra foi finalizada. 
 	formaPalavra(btn){
 		if(this.iniciaPalavra == true){
-			btn.setAttribute("style","width:30px;height:30px;background-color:gray");
-			this.idsBotoesAtivados.push(btn.getAttribute("id"));
+			btn.setAttribute("class","letraSelecionada");
+			if(btn.getAttribute("SELECIONADA") == "NÃO"){
+				btn.setAttribute("selecionada","SIM");
+				this.idsBotoesAtivados.push(btn.getAttribute("id"));
+			}
 			this.letrasAtivadas .push(btn.getAttribute("letra"));
 			this.exibePalavraFormada();			
 		}else{
@@ -115,7 +132,8 @@
 
 	voltaletrasAoPadrao(){
 		this.idsBotoesAtivados.forEach(idBtn => {
-			document.getElementById(idBtn).setAttribute("style","width:30px;height:30px");
+				document.getElementById(idBtn).setAttribute("class","letraPadrao");
+				document.getElementById(idBtn).setAttribute("selecionada","NÃO");
 		});
 		this.idsBotoesAtivados = [];
 	}
@@ -124,8 +142,11 @@
 	iniciaFinalizaPalavra(btn){		
 		if(this.iniciaPalavra == false){
 			this.iniciaPalavra = true;
-			btn.setAttribute("style","width:30px;height:30px;background-color:gray");
-			this.idsBotoesAtivados.push(btn.getAttribute("id"));
+			btn.setAttribute("class","letraSelecionada");
+			if(btn.getAttribute("SELECIONADA") == "NÃO"){
+				btn.setAttribute("selecionada","SIM");
+				this.idsBotoesAtivados.push(btn.getAttribute("id"));
+			}
 			this.letrasAtivadas.push(btn.getAttribute("letra"));
 			this.exibePalavraFormada();			
 		}else{
@@ -143,13 +164,17 @@
 		document.getElementById("plvrFormada").textContent = this.palavraFormada;
 	}
 	
-	escolhePalavras(qtddPalavras){
+	escolhePalavras(){
 		var aleatorio;
 		var contador = 0;
 		this.palavrasEscolhidas = [];
-		for(let i = 0;i<qtddPalavras;i++){
+		var contador = 0;
+		while(contador < this.qtddPalavrasParaEncontrar){
 			aleatorio = Math.floor(Math.random() * (this.palavras.length - 1) + 1);
-			this.palavrasEscolhidas.push(this.palavras[aleatorio]);
+			if(this.palavrasEscolhidas.includes(this.palavras[aleatorio]) == false){
+				this.palavrasEscolhidas.push(this.palavras[aleatorio]);
+				contador++;
+			}
 		}
 		document.getElementById("painelPalavras").innerHTML = "<label>Encontre as palavras abaixo:</label>";
 		for(let i = 0;i < this.palavrasEscolhidas.length;i++){
@@ -163,7 +188,7 @@
 			var encontrada = false;
 			for(let i = 0;i<palavrasDoPainel.length;i++){
 				if (replace(palavrasDoPainel[i].textContent," ","") == this.palavraFormada){
-					document.getElementById(palavrasDoPainel[i].getAttribute("id")).style.textDecoration = "line-through";
+					document.getElementById(palavrasDoPainel[i].getAttribute("id")).setAttribute("class","piscarTexto");
 					encontrada = true;
 					this.pontuacao ++;
 					this.idsBotoesAtivados = [];
@@ -250,7 +275,7 @@
 			document.getElementById(elemento).textContent = palavra[i];
 			document.getElementById(elemento).setAttribute("letra",palavra[i]);
 			document.getElementById(elemento).setAttribute("utilizada","SIM");
-			document.getElementById(elemento).setAttribute("style","width:30px;height:30px");
+			document.getElementById(elemento).setAttribute("class","letraPadrao");
 		}
 		switch(direction){				
 			case "horizontalDireita":	
@@ -303,24 +328,7 @@
 			while (inserida == false){								
 				var direcaoAleatoria = Math.floor(Math.random() * this.direcoes.length);				
 				direction = this.direcoes[direcaoAleatoria];
-				switch(direction){				
-				case "horizontalDireita":	
-					distribui(i);				
-				break;
-					
-				case "horizontalEsquerda":
-					distribui(i);					
-				break;
-					
-				case "verticalAbaixo":
-					distribui(i);
-				break;
-					
-				case "verticalAcima":
-					distribui(i);
-				break;
-					
-				}
+				distribui(i);
 			}
 		}	
 

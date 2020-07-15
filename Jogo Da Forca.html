@@ -4,7 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="jogoDaForca.css">
+<link rel="stylesheet" href="classesGerais.css">
+<link rel="stylesheet" href="classesJogoDaForca.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="jogoDaForca.js"></script>
@@ -12,19 +13,19 @@
 
  </head>
 
- <body onLoad="novaRodada()"> 
-<div class="container-fluid">
-	<header class="text-center" style="margin-bottom: 50px;">
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-9">
-				<h3>JOGO DA FORCA</h3>
-			</div>
+ <body onLoad="novaRodada();geraMenu()"> 
+<div class="container text-center">
+	<div class="row cabecalhoPagina">
+		<div id="colunaMenu" class="col-sm-2">
 		</div>
-	</header>
-	<div class="row">
+		<div class="col-sm-10">
+	<header class="text-center"><h3>JOGO DA FORCA</h3></header>
+		</div>
+	</div>
+	<div class="row  corpoPagina">
 		<div class="col-sm-2">
-			<div class="text-center"><button onclick="alert(novoJogo.letrasEspeciais[2])">REINICIAR</button></div>
+			<div class="text-center"><button onclick="alert(novoJogo.letrasEspeciais[2])">NOVO JOGO</button></div>
+			<div class="text-center"><button onclick="alert(novoJogo.erros)">TESTE</button></div>
 			<hr>
 			<div class="text-center">
 				<h4>COMO JOGAR:</h4>
@@ -39,12 +40,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-10" style="border-left: 2px solid;">
+		<div class="col-sm-10" style="border-left: 5px solid white;">
 			<div class="row">
 				<div class="col-sm-5">
-					<div ><img id="forca" src="imagens/forca_0.jpg"></div>
+					<div><img id="forca" src="imagens/forca_0.jpg" style="width:350px;height:500px;margin-top: 50px;"></div>
 				</div>
-				<div class="col-sm-7 text-center" style="height: 100%; border-left: 1px solid">
+				<div class="col-sm-7 text-center" style="height: 100%;border-left: 5px solid white;">
 					<div id="painelJogo" style="height: 600px;">
 						<h3>
 							<label>Palavra Formada:</label>		
@@ -79,8 +80,13 @@
 				</div>
 			</div>
 		</div>
+
+
 </div>
-<footer style="border-top:2px solid;margin-top: 10px;"></footer>
+<div class="container">
+	<footer class="rodapePagina"></footer>
+</div>
+
 </body>
 
  </html>
