@@ -80,20 +80,25 @@ class jogoDaForca{
         }
         this.letrasJaEscolhidas.push(letra);
         document.getElementById("letrasJaEscolhidas").textContent = this.letrasJaEscolhidas;
-        this.verificaPalavra();
+        setTimeout(() => {
+            this.verificaPalavra();  
+        }, 1000);        
         this.verificaErros();
         
     }
 
     verificaErros(){
         if(this.erros == 7){
-            var resposta = confirm("Chances esgotadas. A palavra correta era: ".concat(replace(this.palavraEscolhida,",","")).concat("\n").concat("Deseja iniciar novo jogo?"));
-            if (resposta == true){
-                novaRodada();
-            }else{
-                document.getElementById("teclado").style.display = 'none';
-            }
-            erros = 0;
+            setTimeout(() => {
+                var resposta = confirm("Chances esgotadas. A palavra correta era: ".concat(replace(this.palavraEscolhida,",","")).concat("\n").concat("Deseja iniciar novo jogo?"));
+                if (resposta == true){
+                    novaRodada();
+                }else{
+                    document.getElementById("teclado").style.display = 'none';
+                }
+                erros = 0;                
+            }, 1000);
+
         }
     }
 

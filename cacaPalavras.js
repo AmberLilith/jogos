@@ -28,7 +28,7 @@
 	}
 
 	obtemDificuldade(){
-		var opcoes = document.querySelectorAll("[name='dificuldade'")
+		var opcoes = document.querySelectorAll("[name='dificuldade']")
 		for(let i = 0;i<opcoes.length;i++){
 			if(opcoes[i].checked == true){
 				return [parseInt(opcoes[i].getAttribute("colunasLinhas")),parseInt(opcoes[i].getAttribute("qtdd_palavras"))];
@@ -163,7 +163,9 @@
 		this.palavraFormada = replace(this.letrasAtivadas,",","");
 		document.getElementById("plvrFormada").textContent = this.palavraFormada;
 	}
-	
+	//Esse método compara a qtdd de colunas do painel definido atraves da dificuldade escolhida pelo
+	//usuário, como tamanho da palavra escolhida para evitar que seja escolhida uma palavra que seja
+	//maior que a quantidade de posições/letras na direção escolhida
 	escolhePalavras(){
 		var aleatorio;
 		var contador = 0;
@@ -171,10 +173,12 @@
 		var contador = 0;
 		while(contador < this.qtddPalavrasParaEncontrar){
 			aleatorio = Math.floor(Math.random() * (this.palavras.length - 1) + 1);
-			if(this.palavrasEscolhidas.includes(this.palavras[aleatorio]) == false){
-				this.palavrasEscolhidas.push(this.palavras[aleatorio]);
-				contador++;
-			}
+			if(this.palavras[aleatorio].length <= this.qtddColunasDeLetras){
+				if(this.palavrasEscolhidas.includes(this.palavras[aleatorio]) == false){
+					this.palavrasEscolhidas.push(this.palavras[aleatorio]);
+					contador++;
+				}
+		}
 		}
 		document.getElementById("painelPalavras").innerHTML = "<label>Encontre as palavras abaixo:</label>";
 		for(let i = 0;i < this.palavrasEscolhidas.length;i++){

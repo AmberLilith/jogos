@@ -24,11 +24,17 @@
 	</div>
 	<div class="row corpoPagina">
 		<div class="col-sm-2">
+			<h4>TEMA:</h4>
+			<div><input type="radio" name="tema" id="animais" checked> - ANIMAIS</div>
+			<div><input type="radio" name="tema" id="paisagens"> - NATUREZA</div>
+			<div><input type="radio" name="tema" id="frutas"> - FRUTAS</div>
+			<hr>
+
 			<h4>DIFICULDADE:</h4>
 			<div><input type="radio" name="dificuldade" id="facil" checked> - FÁCIL (6X6)</div>
 			<div><input type="radio" name="dificuldade" id="medio" > - MÉDIO (12x12)</div>
 			<div><input type="radio" name="dificuldade" id="dificil"> - DIFÍCIL (24x24) </div>
-			<div class="text-center"><button class="botaoNovoJogo" onclick="var novoJogo = new jogoDaMemoria();alert(novoJogo.dificuldades.dificil.colunas)">NOVO JOGO</button></div>
+			<div class="text-center"><button class="botaoNovoJogo" onclick="if(novoJogo != undefined){clearInterval(novoJogo.intervalo)};novoJogo = new jogoDaMemoria();novoJogo.novaRodada(true)">NOVO JOGO</button></div>
 			<hr>
 			<div class="text-center">
 				<h4>COMO JOGAR:</h4>
@@ -37,12 +43,20 @@
 				</div>
 			</div>
 		</div>
-        <div class="col-sm-10" style="border-left: 5px solid white;">
-            <div><span>Erros:</span>
-                <span>10</span>
-                <span style="margin-left: 10px;">Acertos:</span>
-                <span></span>
-            </div>	
+		<div class="col-sm-10" style="border-left: 5px solid white;">
+			<div class="row">
+				<div class="col-sm-9">
+					<div><span>Erros:</span>
+						<span id="erros">0</span>
+						<span style="margin-left: 10px;">Acertos:</span>
+						<span id="acertos">0</span>
+					</div>
+				</div>
+					<div class="col-sm-3">
+						<span>Tempo decorrido:</span><span id="contagemRegressiva"></span>
+					</div>
+				
+			</div>	
 			<div id="painelJogo">
 			</div>
 		</div>

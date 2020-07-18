@@ -13,7 +13,7 @@
 
  </head>
 
- <body onLoad="novoJogo = new jogoCacaPalavras();novoJogo.novaRodada(true);geraMenu()"> 
+ <body onLoad="geraMenu()"> 
 <div class="container text-center">
 	<div class="row cabecalhoPagina">
 		<div id="colunaMenu" class="col-sm-2">
@@ -30,7 +30,7 @@
 			<div><input type="radio" name="dificuldade" id="facil" colunasLinhas="10" qtdd_palavras="3" checked> - FÁCIL</div>
 			<div><input type="radio" name="dificuldade" id="medio" colunasLinhas="15" qtdd_palavras="8"> - MÉDIO</div>
 			<div><input type="radio" name="dificuldade" id="dificil" colunasLinhas="20" qtdd_palavras="15"> - DIFÍCIL</div>
-			<div class="text-center"><button onclick="novoJogo.novaRodada(true)">NOVO JOGO</button></div>
+			<div class="text-center"><button onclick="novoJogo = new jogoCacaPalavras();novoJogo.novaRodada(true)">NOVO JOGO</button></div>
 			<hr>
 			<div class="text-center">
 				<h4>COMO JOGAR:</h4>
